@@ -19,7 +19,10 @@ inquirer.prompt([
     type: "list", 
     message: "Choose a student from the list below:", 
     name: "selectedStudentId",
-    choices: arrayOfStudents.map(({ id, name }) => ({
+    choices: arrayOfStudents.map(({ id, name }) => ({ //per Gary, you are going to map over the array of data
+      //array mapping takes one array and transforms it into another array
+      //map over the original data (only need id and name); that's the only part being put into the new array
+      //inquirer looks for key of value (with id)
       name: name,
       value: id
     })).then( response => {

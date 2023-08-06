@@ -1,5 +1,6 @@
+//per Gary, this file does all the database stuff
 const inquirer = require("inquirer");
-const connection = require("../config/connection");
+const connection = require("../config/connection"); //per Gary, this imports sql already connect to the database
 
 /*
   We are making use of a mysql2 method called promise() which allows us to 
@@ -8,11 +9,13 @@ const connection = require("../config/connection");
   and return values from them.
 */
 
-function listAllDepartments(){
-  return connection.promise().query("SELECT department.id, department.name FROM department;");
+function listAllDepartments() {
+  //per Gary, use connection.promise().query every time
+  return connection
+    .promise()
+    .query("SELECT department.id, department.name FROM department;");
 }
-
 
 module.exports = {
-  listAllDepartments
-}
+  listAllDepartments,
+};
