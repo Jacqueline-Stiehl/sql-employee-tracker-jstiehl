@@ -8,6 +8,8 @@ const {
 } = require("./lib/queries"); //lists all departments
 const {
   displayAllDepartments,
+  displayAllEmployees,
+  displayAllRoles,
   displayAllEmployeesByDepartment,
   displayAllEmployeesByManager,
 } = require("./lib/displays"); //displays all the departments
@@ -19,6 +21,9 @@ const {
 */
 
 function start() {
+  // const result = listAllDepartments();
+  // console.log(result);
+
   inquirer
     .prompt([
       {
@@ -37,42 +42,56 @@ function start() {
         ],
       },
     ])
-    .then((response) => {
+    .then(async (response) => {
       switch (response.option) {
         case "List all departments": //per Gary, do a case for each of the options
-          listAllDepartments().then(([rows]) => {
-            //per Gary, when you get an array of data from SQL, must be in brackets [rows]
-            displayAllDepartments(rows);
-            start();
-          });
+          const [rows] = await listAllDepartments();
+          console.log(rows);
+
+          displayAllDepartments(rows);
+          start();
           break;
+        //_________________________________________________________
+        // listAllDepartments().then(([rows]) => {
+        //   //per Gary, when you get an array of data from SQL, must be in brackets [rows]
+        //   displayAllDepartments(rows);
+        //   start();
+        // });
+
         //I entered additional cases here:
 
         case "List all employees":
-          listAllEmployees().then(([rows]) => {
-            displayAllEmployees(rows);
-            start();
-          });
+          const [rows2] = await listAllEmployees();
+          console.log(rows2);
+
+          displayAllEmployees(rows2);
+          start();
+          // listAllEmployees().then(([rows]) => {
+          //   displayAllEmployees(rows);
+          //   start();
+          // });
           break;
 
         case "List all employees by department":
-          listAllEmployeesByDepartment().then(([rows]) => {
-            displayAllEmployeesByDepartment(rows);
-            start();
-          });
+          const [rows3] = await listAllEmployeesByDepartment();
+          console.log(rows3);
+
+          displayAllEmployeesByDepartment(rows3);
+          start();
           break;
 
         case "List all employees by manager":
-          listAllEmployeesByManager().then(([rows]) => {
-            displayAllEmployeesByManager(rows);
-            start();
-          });
-          break;
+          const [rows4] = await listAllEmployeesByManager();
+          console.log(rows4);
 
-        default:
+          displayAllEmployeesByManager(rows4);
           start();
+          break;
       }
     });
+
+  //default:
+  start();
 }
 
 start();

@@ -55,4 +55,11 @@ FROM employees e
 INNER JOIN roles r ON r.id = e.role_id
     INNER JOIN departments d ON d.id = r.department_id
     LEFT JOIN employees m ON e.manager_id = m.id;
+
+--one department can have many employees
+SELECT e.first_name, e.last_name, d.name
+FROM employees e
+INNER JOIN roles r ON r.id = e.role_id
+    INNER JOIN departments d ON d.id = r.department_id;
+--GROUP BY department;
     
