@@ -1,10 +1,11 @@
 const mysql = require("mysql2");
 
+//connect to database
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "gary1234",
-  database: "employees"
+  password: "password",
+  database: "employee_db",
 });
 
 connection.connect(function (err) {
