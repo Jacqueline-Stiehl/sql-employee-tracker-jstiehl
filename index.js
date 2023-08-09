@@ -62,7 +62,6 @@ function start() {
         //_______________________________________________
         case "Add an employee":
           addEmployee();
-          //start();
           break;
 
         case "Add a role":
@@ -93,13 +92,6 @@ function addEmployee() {
           value: manager.id,
           name: `${manager.first_name} ${manager.last_name}`,
         }));
-
-      // const managerChoices = employees.map(
-      //   ({ first_name, last_name, manager_id }) => ({
-      //     name: `${first_name} ${last_name}`,
-      //     value: manager_id,
-      //   })
-      // );
 
       inquirer
         .prompt([
