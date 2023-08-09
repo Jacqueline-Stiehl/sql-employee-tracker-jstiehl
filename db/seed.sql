@@ -62,4 +62,27 @@ FROM employees e
 INNER JOIN roles r ON r.id = e.role_id
     INNER JOIN departments d ON d.id = r.department_id;
 --GROUP BY department;
-    
+
+SELECT e.first_name, e.last_name, d.name AS department, CONCAT(m.first_name, ' ', m.last_name) AS manager 
+FROM employees e 
+INNER JOIN roles r ON r.id = e.role_id 
+    INNER JOIN departments d ON d.id = r.department_id 
+    LEFT JOIN employees m ON e.manager_id = m.id;
+
+SELECT e.first_name, e.last_name, CONCAT(m.first_name, ' ', m.last_name) AS manager 
+FROM employees e 
+INNER JOIN roles r ON r.id = e.role_id 
+    INNER JOIN departments d ON d.id = r.department_id 
+    LEFT JOIN employees m ON e.manager_id = m.id;
+
+--for roles:
+SELECT r.id, r.title, r.salary, d.name 
+FROM roles r
+INNER JOIN departments d ON d.id = r.department_id
+  
+  --for employees:
+SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name, " ", m.last_name) AS manager
+FROM employees e
+INNER JOIN roles r ON r.id = e.role_id
+    INNER JOIN departments d ON d.id = r.department_id
+    LEFT JOIN employees m ON e.manager_id = m.id;
